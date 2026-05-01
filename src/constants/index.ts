@@ -31,8 +31,8 @@ export const DAI = new Token(GGPAY_CHAIN_ID, '0x6B175474E89094C44Da98b954EedeAC4
 export const USDC = new Token(GGPAY_CHAIN_ID, '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', 6, 'USDC', 'USD//C')
 export const USDT = new Token(GGPAY_CHAIN_ID, '0xdAC17F958D2ee523a2206206994597C13D831ec7', 6, 'USDT', 'Tether USD')
 
-export const AVERAGE_BLOCK_TIME_IN_SECS = 3 // GGPAY typical block time
-export const PROPOSAL_LENGTH_IN_BLOCKS = 40_320
+export const AVERAGE_BLOCK_TIME_IN_SECS = 3
+export const PROPOSAL_LENGTH_IN_BLOCKS = 40320
 export const PROPOSAL_LENGTH_IN_SECS = AVERAGE_BLOCK_TIME_IN_SECS * PROPOSAL_LENGTH_IN_BLOCKS
 
 export const GOVERNANCE_ADDRESS = '0x5e4be8Bc9637f0EAA1A755019e06A68ce081D58F'
@@ -41,45 +41,45 @@ export const TIMELOCK_ADDRESS = '0x1a9C8182C09F50C8318d769245beA52c32BE35BC'
 const UNI_ADDRESS = '0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984'
 
 export const UNI: { [chainId: number]: Token } = {
-  [GGPAY_CHAIN_ID]: new Token(GGPAY_CHAIN_ID, UNI_ADDRESS, 18, 'UNI', 'Uniswap')
+  [GGPAY_CHAIN_ID]: new Token(GGPAY_CHAIN_ID, UNI_ADDRESS, 18, 'UNI', 'Uniswap'),
 }
 
 export const COMMON_CONTRACT_NAMES: { [address: string]: string } = {
   [UNI_ADDRESS]: 'UNI',
   [GOVERNANCE_ADDRESS]: 'Governance',
-  [TIMELOCK_ADDRESS]: 'Timelock'
+  [TIMELOCK_ADDRESS]: 'Timelock',
 }
 
 export const MERKLE_DISTRIBUTOR_ADDRESS: { [chainId: number]?: string } = {
-  [GGPAY_CHAIN_ID]: '0x090D4613473dEE047c3f2706764f49E0821D256e'
+  [GGPAY_CHAIN_ID]: '0x090D4613473dEE047c3f2706764f49E0821D256e',
 }
 
 const WETH_ONLY: ChainTokenList = {
-  [GGPAY_CHAIN_ID]: [WGGPAY]
+  [GGPAY_CHAIN_ID]: [WGGPAY],
 }
 
 // used to construct intermediary pairs for trading
 export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
-  [GGPAY_CHAIN_ID]: [WGGPAY, DAI, USDC, USDT]
+  [GGPAY_CHAIN_ID]: [WGGPAY, DAI, USDC, USDT],
 }
 
 export const CUSTOM_BASES: { [chainId: number]?: { [tokenAddress: string]: Token[] } } = {}
 
 // used for display in the default list when adding liquidity
 export const SUGGESTED_BASES: ChainTokenList = {
-  [GGPAY_CHAIN_ID]: [WGGPAY, DAI, USDC, USDT]
+  [GGPAY_CHAIN_ID]: [WGGPAY, DAI, USDC, USDT],
 }
 
 // used to construct the list of all pairs we consider by default in the frontend
 export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
-  [GGPAY_CHAIN_ID]: [WGGPAY, DAI, USDC, USDT]
+  [GGPAY_CHAIN_ID]: [WGGPAY, DAI, USDC, USDT],
 }
 
 export const PINNED_PAIRS: { readonly [chainId: number]?: [Token, Token][] } = {
   [GGPAY_CHAIN_ID]: [
     [USDC, USDT],
-    [DAI, USDT]
-  ]
+    [DAI, USDT],
+  ],
 }
 
 export interface WalletInfo {
@@ -101,8 +101,8 @@ export const SUPPORTED_WALLETS: { [key: string]: WalletInfo } = {
     iconName: 'metamask.png',
     description: 'Easy-to-use browser extension.',
     href: null,
-    color: '#E8831D'
-  }
+    color: '#E8831D',
+  },
 }
 
 export const NetworkContextName = 'NETWORK'
