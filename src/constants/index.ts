@@ -1,22 +1,15 @@
-import { ChainId, JSBI, Percent, Token, WETH } from '@uniswap/sdk'
+import { JSBI, Percent, Token } from '@uniswap/sdk'
 import { AbstractConnector } from '@web3-react/abstract-connector'
-
 import { fortmatic, injected, portis, walletconnect, walletlink } from '../connectors'
 
-// GGPAY Chain ID
+// GGPAY Chain Configuration
 export const GGPAY_CHAIN_ID = 2121216 
-
 export const ROUTER_ADDRESS = '0xaF0ED8b0E017A7dc311dc206107cAF95C262c361'
-
 export const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000'
 
 export { PRELOADED_PROPOSALS } from './proposals'
 
-type ChainTokenList = {
-  readonly [chainId: number]: Token[]
-}
-
-// WGGPAY Token
+// GGPAY Tokens using 'as any' to bypass strict ChainId checks
 export const WGGPAY = new Token(
   GGPAY_CHAIN_ID as any,
   '0x96371352960b0Fe65d52F6538DdF744A66A453A3',
@@ -52,21 +45,17 @@ export const MERKLE_DISTRIBUTOR_ADDRESS: { [chainId: number]?: string } = {
   [GGPAY_CHAIN_ID]: '0x090D4613473dEE047c3f2706764f49E0821D256e'
 }
 
-const WETH_ONLY: ChainTokenList = {
-  [GGPAY_CHAIN_ID]: [WGGPAY]
-}
-
-export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
+export const BASES_TO_CHECK_TRADES_AGAINST: { [chainId: number]: Token[] } = {
   [GGPAY_CHAIN_ID]: [WGGPAY, DAI, USDC, USDT]
 }
 
 export const CUSTOM_BASES: { [chainId: number]?: { [tokenAddress: string]: Token[] } } = {}
 
-export const SUGGESTED_BASES: ChainTokenList = {
+export const SUGGESTED_BASES: { [chainId: number]: Token[] } = {
   [GGPAY_CHAIN_ID]: [WGGPAY, DAI, USDC, USDT]
 }
 
-export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
+export const BASES_TO_TRACK_LIQUIDITY_FOR: { [chainId: number]: Token[] } = {
   [GGPAY_CHAIN_ID]: [WGGPAY, DAI, USDC, USDT]
 }
 
@@ -116,5 +105,4 @@ export const MIN_ETH: JSBI = JSBI.exponentiate(JSBI.BigInt(10), JSBI.BigInt(16))
 export const BETTER_TRADE_LESS_HOPS_THRESHOLD = new Percent(JSBI.BigInt(50), JSBI.BigInt(10000))
 export const ZERO_PERCENT = new Percent('0')
 export const ONE_HUNDRED_PERCENT = new Percent('1')
-
 export const BLOCKED_ADDRESSES: string[] = []
