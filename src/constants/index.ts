@@ -18,16 +18,16 @@ type ChainTokenList = {
 
 // WGGPAY Token
 export const WGGPAY = new Token(
-  GGPAY_CHAIN_ID,
+  GGPAY_CHAIN_ID as any,
   '0x96371352960b0Fe65d52F6538DdF744A66A453A3',
   18,
   'WGGPAY',
   'Wrapped GGPAY'
 )
 
-export const DAI = new Token(GGPAY_CHAIN_ID, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18, 'DAI', 'Dai Stablecoin')
-export const USDC = new Token(GGPAY_CHAIN_ID, '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', 6, 'USDC', 'USD//C')
-export const USDT = new Token(GGPAY_CHAIN_ID, '0xdAC17F958D2ee523a2206206994597C13D831ec7', 6, 'USDT', 'Tether USD')
+export const DAI = new Token(GGPAY_CHAIN_ID as any, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18, 'DAI', 'Dai Stablecoin')
+export const USDC = new Token(GGPAY_CHAIN_ID as any, '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', 6, 'USDC', 'USD//C')
+export const USDT = new Token(GGPAY_CHAIN_ID as any, '0xdAC17F958D2ee523a2206206994597C13D831ec7', 6, 'USDT', 'Tether USD')
 
 export const AVERAGE_BLOCK_TIME_IN_SECS = 3
 export const PROPOSAL_LENGTH_IN_BLOCKS = 40320
@@ -39,7 +39,7 @@ export const TIMELOCK_ADDRESS = '0x1a9C8182C09F50C8318d769245beA52c32BE35BC'
 const UNI_ADDRESS = '0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984'
 
 export const UNI: { [chainId: number]: Token } = {
-  [GGPAY_CHAIN_ID]: new Token(GGPAY_CHAIN_ID, UNI_ADDRESS, 18, 'UNI', 'Uniswap')
+  [GGPAY_CHAIN_ID]: new Token(GGPAY_CHAIN_ID as any, UNI_ADDRESS, 18, 'UNI', 'Uniswap')
 }
 
 export const COMMON_CONTRACT_NAMES: { [address: string]: string } = {
