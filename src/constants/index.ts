@@ -9,7 +9,7 @@ export const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000'
 
 export { PRELOADED_PROPOSALS } from './proposals'
 
-// GGPAY Tokens (ALL addresses strictly lowercased to guarantee NO checksum invariant crashes)
+// GGPAY Tokens (ALL addresses strictly lowercased to prevent Checksum white screen crash)
 export const WGGPAY = new Token(
   GGPAY_CHAIN_ID as any,
   '0x96371352960b0fe65d52f6538ddf744a66a453a3',
@@ -18,11 +18,9 @@ export const WGGPAY = new Token(
   'Wrapped GGPAY'
 )
 
-// Safely inject custom chain WETH
-// @ts-ignore
-WETH[GGPAY_CHAIN_ID] = WGGPAY
+// Safely inject custom chain WETH using Object.assign to completely avoid TypeScript compile errors
+Object.assign(WETH as any, { [GGPAY_CHAIN_ID]: WGGPAY })
 
-// Here was the fatal error earlier, now fixed strictly to lowercase
 export const DAI = new Token(GGPAY_CHAIN_ID as any, '0x6b175474e89094c44da98b954eedeac495271d0f', 18, 'DAI', 'Dai Stablecoin')
 export const USDC = new Token(GGPAY_CHAIN_ID as any, '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48', 6, 'USDC', 'USD Coin')
 export const USDT = new Token(GGPAY_CHAIN_ID as any, '0xdac17f958d2ee523a2206206994597c13d831ec7', 6, 'Tether USD', 'Tether USD')
