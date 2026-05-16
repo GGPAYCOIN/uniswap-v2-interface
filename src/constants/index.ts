@@ -4,7 +4,15 @@ import { injected } from '../connectors'
 
 // GGPAY Chain Configuration
 export const GGPAY_CHAIN_ID = 2121216 
+
+// GGPAY Final V2 Router Address
 export const ROUTER_ADDRESS = '0xaf0ed8b0e017a7dc311dc206107caf95c262c361'
+
+// GGPAY V2 Factory Address
+export const V2_FACTORY_ADDRESSES: { [chainId: number]: string } = {
+  [GGPAY_CHAIN_ID]: '0x38a6485086b7cd7eff71172362291c25720c2860'
+}
+
 export const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000'
 
 export { PRELOADED_PROPOSALS } from './proposals'
@@ -112,6 +120,20 @@ export const BETTER_TRADE_LESS_HOPS_THRESHOLD = new Percent(JSBI.BigInt(50), JSB
 export const ZERO_PERCENT = new Percent('0')
 export const ONE_HUNDRED_PERCENT = new Percent('1')
 export const BLOCKED_ADDRESSES: string[] = []
+
+// GGPAY Mainnet Network Configuration for MetaMask Info
+export const GGCHAIN_INFO = {
+  chainId: '0x205c70', // 2121216 in Hexadecimal
+  chainName: 'GGPAY Mainnet',
+  nativeCurrency: {
+    name: 'GGPAY',
+    symbol: 'GGPAY',
+    decimals: 18
+  },
+  rpcUrls: ['https://rpc.gghyper.net'],
+  blockExplorerUrls: ['https://explorer.gghyper.net']
+}
+
 // Magic Polyfill: Bypass Uniswap V2 Tokens.ts White Screen Crash for Custom Chains
 const originalKeys = Object.keys;
 (Object as any).keys = (obj: any) => {
