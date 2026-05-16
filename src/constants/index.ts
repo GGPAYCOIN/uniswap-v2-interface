@@ -4,12 +4,12 @@ import { injected } from '../connectors'
 
 // GGPAY Chain Configuration
 export const GGPAY_CHAIN_ID = 2121216 
-export const ROUTER_ADDRESS = '0xaF0ED8b0E017A7dc311dc206107cAF95C262c361'
+export const ROUTER_ADDRESS = '0xaf0ed8b0e017a7dc311dc206107caf95c262c361'
 export const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000'
 
 export { PRELOADED_PROPOSALS } from './proposals'
 
-// GGPAY Tokens (All addresses converted to lowercase to completely prevent checksum invariant crashes)
+// GGPAY Tokens (ALL addresses strictly lowercased to guarantee NO checksum invariant crashes)
 export const WGGPAY = new Token(
   GGPAY_CHAIN_ID as any,
   '0x96371352960b0fe65d52f6538ddf744a66a453a3',
@@ -18,12 +18,13 @@ export const WGGPAY = new Token(
   'Wrapped GGPAY'
 )
 
-// Force bypass compiler rules and safely map WGGPAY to the core WETH object
+// Safely inject custom chain WETH
 // @ts-ignore
 WETH[GGPAY_CHAIN_ID] = WGGPAY
 
+// Here was the fatal error earlier, now fixed strictly to lowercase
 export const DAI = new Token(GGPAY_CHAIN_ID as any, '0x6b175474e89094c44da98b954eedeac495271d0f', 18, 'DAI', 'Dai Stablecoin')
-export const USDC = new Token(GGPAY_CHAIN_ID as any, '0xa0b86991c6218b36c1d19d4a2e9Eb0cE3606eb48', 6, 'USDC', 'USD Coin')
+export const USDC = new Token(GGPAY_CHAIN_ID as any, '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48', 6, 'USDC', 'USD Coin')
 export const USDT = new Token(GGPAY_CHAIN_ID as any, '0xdac17f958d2ee523a2206206994597c13d831ec7', 6, 'Tether USD', 'Tether USD')
 export const WBTC = new Token(GGPAY_CHAIN_ID as any, '0x2260fac5e5542a773aa44fbcfedf7c1239181313', 8, 'WBTC', 'Wrapped Bitcoin')
 
@@ -31,10 +32,10 @@ export const AVERAGE_BLOCK_TIME_IN_SECS = 3
 export const PROPOSAL_LENGTH_IN_BLOCKS = 40320
 export const PROPOSAL_LENGTH_IN_SECS = AVERAGE_BLOCK_TIME_IN_SECS * PROPOSAL_LENGTH_IN_BLOCKS
 
-export const GOVERNANCE_ADDRESS = '0x5e4be8Bc9637f0EAA1A755019e06A68ce081D58F'
-export const TIMELOCK_ADDRESS = '0x1a9C8182C09F50C8318d769245beA52c32BE35BC'
+export const GOVERNANCE_ADDRESS = '0x5e4be8bc9637f0eaa1a755019e06a68ce081d58f'
+export const TIMELOCK_ADDRESS = '0x1a9c8182c09f50c8318d769245bea52c32be35bc'
 
-const UNI_ADDRESS = '0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984'
+const UNI_ADDRESS = '0x1f9840a85d5af5bf1d1762f925bdaddc4201f984'
 
 export const UNI: { [chainId: number]: Token } = {
   [GGPAY_CHAIN_ID]: new Token(GGPAY_CHAIN_ID as any, UNI_ADDRESS, 18, 'UNI', 'Uniswap')
@@ -47,7 +48,7 @@ export const COMMON_CONTRACT_NAMES: { [address: string]: string } = {
 }
 
 export const MERKLE_DISTRIBUTOR_ADDRESS: { [chainId: number]: string } = {
-  [GGPAY_CHAIN_ID]: '0x090D4613473dEE047c3f2706764f49E0821D256e'
+  [GGPAY_CHAIN_ID]: '0x090d4613473dee047c3f2706764f49e0821d256e'
 }
 
 export const BASES_TO_CHECK_TRADES_AGAINST: { [chainId: number]: Token[] } = {
