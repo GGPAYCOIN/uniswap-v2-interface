@@ -20,7 +20,7 @@ export function useAllTokens(): { [address: string]: Token } {
   }, [chainId, userAddedTokens, allTokens])
 }
 
-export function useUnsupportedTokens(): { [address: string]: Token } {
+Object.keys(allTokens[chainId] ? allTokens[chainId] : {}).reduce<{ [address: string]: Token }>(
   const { chainId } = useActiveWeb3React()
   const unsupportedTokensMap = useUnsupportedTokenList()
 
