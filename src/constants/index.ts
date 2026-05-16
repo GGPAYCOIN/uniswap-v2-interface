@@ -18,10 +18,10 @@ export const WGGPAY = new Token(
   'Wrapped GGPAY'
 )
 
-export const DAI = new Token(GGPAY_CHAIN_ID as any, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18, 'DAI', 'Dai Stablecoin')
-export const USDC = new Token(GGPAY_CHAIN_ID as any, '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', 6, 'USDC', 'USD//C')
-export const USDT = new Token(GGPAY_CHAIN_ID as any, '0xdAC17F958D2ee523a2206206994597C13D831ec7', 6, 'USDT', 'Tether USD')
-export const WBTC = new Token(ChainId.MAINNET, '0x2260FAC5E5542a773Aa44fBCfeDf7C1239181313', 8, 'WBTC', 'Wrapped Bitcoin')
+export const DAI = new Token(2121216 as any, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18, 'DAI', 'Dai Stablecoin')
+export const USDC = new Token(2121216 as any, '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', 6, 'USDC', 'USD Coin')
+export const USDT = new Token(2121216 as any, '0xdAC17F958D2ee523a2206206994597C13D831ec7', 6, 'Tether USD', 'Tether USD')
+export const WBTC = new Token(2121216 as any, '0x2260FAC5E5542a773Aa44fBCfeDf7C1239181313', 8, 'WBTC', 'Wrapped Bitcoin')
 export const AVERAGE_BLOCK_TIME_IN_SECS = 3
 export const PROPOSAL_LENGTH_IN_BLOCKS = 40320
 export const PROPOSAL_LENGTH_IN_SECS = AVERAGE_BLOCK_TIME_IN_SECS * PROPOSAL_LENGTH_IN_BLOCKS
