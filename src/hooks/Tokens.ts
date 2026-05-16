@@ -64,7 +64,7 @@ export function useAllInactiveTokens(): { [address: string]: Token } {
   // filter out any token that are on active list
   const activeTokensAddresses = Object.keys(useAllTokens())
   const filteredInactive = activeTokensAddresses
-    ? Object.keys(inactiveTokens).reduce<{ [address: string]: Token }>((newMap, address) => {
+    ? Object.keys(unsupportedTokensMap[chainId] || {}).reduce<{ [address: string]: Token }>(
         if (!activeTokensAddresses.includes(address)) {
           newMap[address] = inactiveTokens[address]
         }
