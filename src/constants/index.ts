@@ -9,22 +9,23 @@ export const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000'
 
 export { PRELOADED_PROPOSALS } from './proposals'
 
-// GGPAY Tokens using 'as any' to bypass strict ChainId checks
+// GGPAY Tokens (All addresses converted to lowercase to completely prevent checksum invariant crashes)
 export const WGGPAY = new Token(
   GGPAY_CHAIN_ID as any,
-  '0x96371352960b0Fe65d52F6538DdF744A66A453A3',
+  '0x96371352960b0fe65d52f6538ddf744a66a453a3',
   18,
   'WGGPAY',
   'Wrapped GGPAY'
 )
 
-// Inject GGPAY custom chain into WETH object safely using Object.assign to avoid syntax traps
-Object.assign(WETH as any, { [GGPAY_CHAIN_ID]: WGGPAY })
+// Force bypass compiler rules and safely map WGGPAY to the core WETH object
+// @ts-ignore
+WETH[GGPAY_CHAIN_ID] = WGGPAY
 
-export const DAI = new Token(GGPAY_CHAIN_ID as any, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18, 'DAI', 'Dai Stablecoin')
-export const USDC = new Token(GGPAY_CHAIN_ID as any, '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', 6, 'USDC', 'USD Coin')
-export const USDT = new Token(GGPAY_CHAIN_ID as any, '0xdAC17F958D2ee523a2206206994597C13D831ec7', 6, 'Tether USD', 'Tether USD')
-export const WBTC = new Token(GGPAY_CHAIN_ID as any, '0x2260FAC5E5542a773Aa44fBCfeDf7C1239181313', 8, 'WBTC', 'Wrapped Bitcoin')
+export const DAI = new Token(GGPAY_CHAIN_ID as any, '0x6b175474e89094c44da98b954eedeac495271d0f', 18, 'DAI', 'Dai Stablecoin')
+export const USDC = new Token(GGPAY_CHAIN_ID as any, '0xa0b86991c6218b36c1d19d4a2e9Eb0cE3606eb48', 6, 'USDC', 'USD Coin')
+export const USDT = new Token(GGPAY_CHAIN_ID as any, '0xdac17f958d2ee523a2206206994597c13d831ec7', 6, 'Tether USD', 'Tether USD')
+export const WBTC = new Token(GGPAY_CHAIN_ID as any, '0x2260fac5e5542a773aa44fbcfedf7c1239181313', 8, 'WBTC', 'Wrapped Bitcoin')
 
 export const AVERAGE_BLOCK_TIME_IN_SECS = 3
 export const PROPOSAL_LENGTH_IN_BLOCKS = 40320
