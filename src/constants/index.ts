@@ -2,13 +2,13 @@ import { JSBI, Percent, Token, WETH } from '@uniswap/sdk'
 import { AbstractConnector } from '@web3-react/abstract-connector'
 import { injected } from '../connectors'
 
-// GGPAY Chain Configuration
+// 1. GGPAY Chain Configuration
 export const GGPAY_CHAIN_ID = 2121216 
 
-// GGPAY Final V2 Router Address
+// 2. GGPAY Final V2 Router Address
 export const ROUTER_ADDRESS = '0xaf0ed8b0e017a7dc311dc206107caf95c262c361'
 
-// GGPAY V2 Factory Address
+// 3. GGPAY V2 Factory Address
 export const V2_FACTORY_ADDRESSES: { [chainId: number]: string } = {
   [GGPAY_CHAIN_ID]: '0x38a6485086b7cd7eff71172362291c25720c2860'
 }
@@ -17,7 +17,7 @@ export const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000'
 
 export { PRELOADED_PROPOSALS } from './proposals'
 
-// GGPAY Tokens (ALL addresses strictly lowercased to prevent Checksum white screen crash)
+// 4. GGPAY Tokens (Only real WGGPAY token kept)
 export const WGGPAY = new Token(
   GGPAY_CHAIN_ID as any,
   '0x96371352960b0fe65d52f6538ddf744a66a453a3',
@@ -26,13 +26,8 @@ export const WGGPAY = new Token(
   'Wrapped GGPAY'
 )
 
-// Safely inject custom chain WETH using Object.assign to completely avoid TypeScript compile errors
+// Safely inject custom chain WETH using Object.assign
 Object.assign(WETH as any, { [GGPAY_CHAIN_ID]: WGGPAY })
-
-export const DAI = new Token(GGPAY_CHAIN_ID as any, '0x6b175474e89094c44da98b954eedeac495271d0f', 18, 'DAI', 'Dai Stablecoin')
-export const USDC = new Token(GGPAY_CHAIN_ID as any, '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48', 6, 'USDC', 'USD Coin')
-export const USDT = new Token(GGPAY_CHAIN_ID as any, '0xdac17f958d2ee523a2206206994597c13d831ec7', 6, 'Tether USD', 'Tether USD')
-export const WBTC = new Token(GGPAY_CHAIN_ID as any, '0x2260fac5e5542a773aa44fbcfedf7c1239181313', 8, 'WBTC', 'Wrapped Bitcoin')
 
 export const AVERAGE_BLOCK_TIME_IN_SECS = 3
 export const PROPOSAL_LENGTH_IN_BLOCKS = 40320
@@ -57,8 +52,9 @@ export const MERKLE_DISTRIBUTOR_ADDRESS: { [chainId: number]: string } = {
   [GGPAY_CHAIN_ID]: '0x090d4613473dee047c3f2706764f49e0821d256e'
 }
 
+// FIX: Removed fake tokens (DAI, USDC, etc.) that caused the allowance error
 export const BASES_TO_CHECK_TRADES_AGAINST: { [chainId: number]: Token[] } = {
-  [GGPAY_CHAIN_ID]: [WGGPAY, DAI, USDC, USDT, WBTC]
+  [GGPAY_CHAIN_ID]: [WGGPAY]
 }
 
 export const CUSTOM_BASES: { [chainId: number]: { [tokenAddress: string]: Token[] } } = {
@@ -66,18 +62,15 @@ export const CUSTOM_BASES: { [chainId: number]: { [tokenAddress: string]: Token[
 }
 
 export const SUGGESTED_BASES: { [chainId: number]: Token[] } = {
-  [GGPAY_CHAIN_ID]: [WGGPAY, DAI, USDC, USDT, WBTC]
+  [GGPAY_CHAIN_ID]: [WGGPAY]
 }
 
 export const BASES_TO_TRACK_LIQUIDITY_FOR: { [chainId: number]: Token[] } = {
-  [GGPAY_CHAIN_ID]: [WGGPAY, DAI, USDC, USDT, WBTC]
+  [GGPAY_CHAIN_ID]: [WGGPAY]
 }
 
 export const PINNED_PAIRS: { readonly [chainId: number]: [Token, Token][] } = {
-  [GGPAY_CHAIN_ID]: [
-    [USDC, USDT],
-    [DAI, USDT]
-  ]
+  [GGPAY_CHAIN_ID]: []
 }
 
 export interface WalletInfo {
@@ -121,7 +114,7 @@ export const ZERO_PERCENT = new Percent('0')
 export const ONE_HUNDRED_PERCENT = new Percent('1')
 export const BLOCKED_ADDRESSES: string[] = []
 
-// GGPAY Mainnet Network Configuration for MetaMask Info
+// 5. GGPAY Mainnet Network Configuration
 export const GGCHAIN_INFO = {
   chainId: '0x205c70', // 2121216 in Hexadecimal
   chainName: 'GGPAY Mainnet',
@@ -134,7 +127,7 @@ export const GGCHAIN_INFO = {
   blockExplorerUrls: ['https://explorer.gghyper.net']
 }
 
-// Magic Polyfill: Bypass Uniswap V2 Tokens.ts White Screen Crash for Custom Chains
+// 6. Magic Polyfill to prevent token crash
 const originalKeys = Object.keys;
 (Object as any).keys = (obj: any) => {
   if (obj === undefined || obj === null) return [];
