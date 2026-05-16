@@ -7,12 +7,12 @@ export function useAllTokens(): { [address: string]: Token } {
   return useMemo(() => {
     if (!chainId) return {}
     
-    // Safely get tokens for the current chain, default to empty object if not found
-    const tokensForChain = allTokens[chainId] || {}
+    // Clean and safe way to check tokens without messing up brackets
+    const tokensMap = allTokens[chainId] ? allTokens[chainId] : {}
     
-    return Object.keys(tokensForChain).reduce<{ [address: string]: Token }>(
+    return Object.keys(tokensMap).reduce<{ [address: string]: Token }>(
       (tokenMap, address) => {
-        tokenMap[address] = tokensForChain[address]
+        tokenMap[address] = tokensMap[address]
         return tokenMap
       },
       { ...userAddedTokens }
@@ -20,19 +20,19 @@ export function useAllTokens(): { [address: string]: Token } {
   }, [chainId, userAddedTokens, allTokens])
 }
 
-Object.keys(allTokens[chainId] ? allTokens[chainId] : {}).reduce<{ [address: string]: Token }>(
+export function useUnsupportedTokens(): { [address: string]: Token } {
   const { chainId } = useActiveWeb3React()
   const unsupportedTokensMap = useUnsupportedTokenList()
 
   return useMemo(() => {
     if (!chainId) return {}
 
-    // Safely get unsupported tokens for the current chain, default to empty object
-    const unsupportedTokensForChain = unsupportedTokensMap[chainId] || {}
+    // Clean and safe way to check unsupported tokens
+    const unsupportedMap = unsupportedTokensMap[chainId] ? unsupportedTokensMap[chainId] : {}
 
-    return Object.keys(unsupportedTokensForChain).reduce<{ [address: string]: Token }>(
+    return Object.keys(unsupportedMap).reduce<{ [address: string]: Token }>(
       (tokenMap, address) => {
-        tokenMap[address] = unsupportedTokensForChain[address]
+        tokenMap[address] = unsupportedMap[address]
         return tokenMap
       },
       {}
