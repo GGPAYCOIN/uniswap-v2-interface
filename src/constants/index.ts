@@ -18,8 +18,8 @@ export const WGGPAY = new Token(
   'Wrapped GGPAY'
 )
 
-// Map WGGPAY to WETH object to prevent Uniswap SDK internal crashes
-WETH[GGPAY_CHAIN_ID as any] = WGGPAY
+// Map WGGPAY to WETH object safely using type casting to prevent compile errors
+;(WETH as any)[GGPAY_CHAIN_ID] = WGGPAY
 
 export const DAI = new Token(GGPAY_CHAIN_ID as any, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18, 'DAI', 'Dai Stablecoin')
 export const USDC = new Token(GGPAY_CHAIN_ID as any, '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', 6, 'USDC', 'USD Coin')
