@@ -47,3 +47,11 @@ export function useAllInactiveTokens(): { [address: string]: Token } {
 export function useIsTokenActive(token: any): boolean {
   return true
 }
+// Restored missing functions to fix the Vercel build error
+export function useAllInactiveTokens(): { [address: string]: Token } {
+  return {}
+}
+
+export function useIsTokenActive(token: any): boolean {
+  return true
+}
